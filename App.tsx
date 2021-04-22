@@ -1,7 +1,29 @@
 import React from "react";
+import { StatusBar } from "react-native";
+import {
+  useFonts,
+  Jost_400Regular,
+  Jost_600SemiBold,
+} from "@expo-google-fonts/jost";
 
-import { Welcome } from "./src/pages/Welcome";
+import Routes from "./src/routes";
+
+import AppLoading from "expo-app-loading";
 
 export default function App() {
-  return <Welcome />;
+  const [fontsLoaded] = useFonts({
+    Jost_400Regular,
+    Jost_600SemiBold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <Routes />
+    </>
+  );
 }
