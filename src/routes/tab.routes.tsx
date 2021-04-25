@@ -1,27 +1,27 @@
 import React from "react";
+import { Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import colors from "../styles/colors";
-import App from "../../App";
 import { PlantSelect } from "../pages/PlantSelect";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MyPlants } from "../pages/MyPlants";
 
-const Apptab = createBottomTabNavigator();
+const AppTab = createBottomTabNavigator();
 
-const AuthRoutes = () => {
+const AuthRoutes: React.FC = () => {
   return (
-    <Apptab.Navigator
+    <AppTab.Navigator
       tabBarOptions={{
         activeTintColor: colors.green,
         inactiveTintColor: colors.heading,
         labelPosition: "beside-icon",
         style: {
-          paddingVertical: 20,
-          height: 88,
+          paddingVertical: 0,
+          height: Platform.OS === "ios" ? 80 : 60,
         },
       }}
     >
-      <Apptab.Screen
+      <AppTab.Screen
         name="Nova Planta"
         component={PlantSelect}
         options={{
@@ -34,7 +34,8 @@ const AuthRoutes = () => {
           ),
         }}
       />
-      <Apptab.Screen
+
+      <AppTab.Screen
         name="Minhas Plantas"
         component={MyPlants}
         options={{
@@ -47,7 +48,7 @@ const AuthRoutes = () => {
           ),
         }}
       />
-    </Apptab.Navigator>
+    </AppTab.Navigator>
   );
 };
 
